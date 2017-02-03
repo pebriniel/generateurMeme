@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- FACEBOOK -->    
+    <meta property="og:url" content="http://www.yohannc.public.codeur.online/meme/index.php" />
+    <meta property="og:title" content="Générateur de meme" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Le meilleur site FR de création de meme en ligne !">
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="300" />
+    <meta property="og:image" content="{{URL}}public/{{OG}}" />
+
+    <meta name="twitter:card" content="Générateur de meme">
+    <meta name="twitter:site" content="{{URL}}">
+    <meta name="twitter:title" content="Générateur de meme">
+    <meta name="twitter:description" content="Le meilleur site FR de création de meme en ligne !">
+    <meta name="twitter:creator" content="Yohann, Anthony, Marie, Boussad">
+    <meta name="twitter:image:src" content="{{URL}}{{OG}}">
+
+    <!-- TWITTER -->
+    <!-- <meta name="twitter:card" content="summary" />
+     <meta name="twitter:creator" content="Groupe 3">
+    <meta name="twitter:title" content="Générateur de meme">
+    <meta name="twitter:description" content="Le meilleur site FR de création de meme en ligne !">
+     <meta property="twitter:image:width" content="400" />
+    <meta property="twitter:image:height" content="300" />
+    <meta name="twitter:image" content="http:// www.yohannc.public.codeur.online/meme/public/img/{{OG}}"> -->
+
+    <!-- End META og -->
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="fonts/glyphicons-halflings-regular.ttf">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/java.js"></script>
+    
+    <link rel="stylesheet" href="{{URL}}css/themeA/bootstrap.min.css">
+    <script type="text/javascript" src="{{URL}}js/bootstrap.min.js"></script>
+    <link rel="icon" href="{{URL}}public/favicon/images.png" />
+    <link rel="stylesheet" href="{{URL}}css/themeA/style.css">
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        input[type=file]{ display: none; }
+    </style>
+    <script>
+        $(document).ready(function(){
+            $("#bouton").click(function(){
+                $('#uploadMeme').click();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <section class="buttons">
+            <div class="container">
+                <div class="row">
+                    <a href="{{URL}}" class="col-md-2-align-left"><img src="{{URL}}public/img/logo.png" width="93em"></a>
+                    <button type="button" id="bouton" name="button" class="btn btn-default col-md-2 col-xs-4 pull-right">Create yours</button>
+                    <a href="{{URL}}liste/" style="margin-top: 1.3em;" class="btn btn-default col-md-2 col-xs-4 pull-right">Liste</a>
+					<form action="#" method="post" enctype="multipart/form-data">
+                        <input id="uploadMeme" type="file" name="UploadMeme" onchange="this.form.submit()">
+                        <input type="hidden" name="sendInput">
+                    </form>
+                </div>
+            </div>
+        </section>
+    </header>

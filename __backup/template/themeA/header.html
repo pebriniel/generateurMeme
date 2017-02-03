@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- META og -->
+
+    <!-- FACEBOOK -->
+    <meta property="fb:app_id" content="facebook_app_id" />
+    <meta property="og:url" content="lien url de l'image" />
+    <meta property="og:title" content="Générateur de meme" />
+    <meta property="og:type" content="image" />
+    <meta property="og:description" content="Le meilleur site FR de création de meme en ligne !">
+    <meta property="og:image" content="Faut mettre l'image ici" />
+
+    <!-- TWITTER -->
+
+    <meta name="twitter:creator" content="Groupe 3">
+    <meta name="twitter:site" content="Générateur de meme">
+    <meta name="twitter:description" content="Le meilleur site FR de création de meme en ligne !">
+    <meta name="twitter:image:src" content="">
+    <meta name="twitter:image" content="">
+
+    <!-- End META og -->
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/java.js"></script>
+    <link rel="stylesheet" href="css/themeA/style.css">
+    <link rel="stylesheet" href="css/themeA/bootstrap.min.css">
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <link rel="icon" href="public/favicon/images.png" />
+    <meta charset="utf-8">
+	
+	<style>
+		input[type=file]{ display: none; }
+	</style>
+	<script>
+		$(document).ready(function(){
+			$("#bouton").click(function(){
+				$('#uploadMeme').click();
+			});
+		});
+	</script>
+	
+    <title></title>
+</head>
+
+<body>
+    <header>
+        <section class="buttons">
+            <div class="container">
+                <div class="row">
+                    <a href="index.php" class="col-md-2-align-left"><img src="public/img/logo.png" width="93em"></a>
+					<button type="button" id="bouton" name="button" class="btn btn-default col-md-2 col-xs-4 pull-right">Create yours</button>
+					<form action="#" method="post" enctype="multipart/form-data">
+						<input id="uploadMeme" type="file" name="UploadMeme" onchange="this.form.submit()">
+						<input type="hidden" name="sendInput">
+					</form>
+				</div>
+            </div>
+        </section>
+    </header>

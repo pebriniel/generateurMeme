@@ -1,0 +1,51 @@
+<p>CHOOSE YOUR MEME</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-push-4">
+            <div class="input-group">
+                <span class="input-group-btn">
+            <button type="button" class="btn btn-default" id="search" name="giffy-search" >
+              <a class="glyphicon glyphicon-search"></a></button>
+          </span>
+                <input type="text" class="form-control" placeholder="Search on Giphy" id="giffy-search">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content-search">
+
+</div>
+<div class="container">
+    <div class="row">
+		{{#list}}
+        <div class="col-xs-4 col-md-2">
+            <a href="generator/{{ID}}" class="thumbnail">
+                <img src="public/img/{{ID}}.{{type}}" alt="..." class="img-rounded img-responsive">
+            </a>
+        </div>
+        {{/list}}
+    </div>
+</div>
+	
+	<script>
+		$(document).ready(function(){
+			$('#giffy-search').on('keyup', function(e){
+				console.log('dev');
+				if (e.keyCode == 13) {
+					var input = $('#giffy-search').val();
+					$('#content-search').html('');
+					$.get('http://api.giphy.com/v1/gifs/search?q='+input+'&api_key=dc6zaTOxFJmzC&limit=20&offset=0', function(data){
+						//console.log(data['data']);
+						var image = data['data'];
+						for(var i = 0; i < image.length; i ++){
+							console.log(image[i]['images']['original']['url']);
+							$('#content-search').append('<div class="col-xs-6 col-md-2"><a href="generator/'+image[i]['images']['original']['url']+'" class="thumbnail"><img src="'+image[i]['images']['original']['url']+'" alt="..." class="img-rounded img-responsive"></a></div>'
+							);
+						}	
+					});
+				}
+			});
+		});
+	</script>
+</div>

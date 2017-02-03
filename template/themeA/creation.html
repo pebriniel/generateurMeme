@@ -1,0 +1,100 @@
+<div class="container">
+    <div class="row">
+	{{#SHOW}}
+		<p>TYPE YOUR TEXT AND CHANGE HIS SIZE</p>
+		<div class="col-md-6">
+            <!-- affichage de l'image  -->
+            <div id="content-image">
+                <img id="image" src="{{URL}}{{ID}}.{{FORMAT}}" alt="" class="img-responsive">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <form action="#" onsubmit="return testChampRemplis();">
+                <textarea id="textTop" name="textTop" placeholder="Top text" class="form-control" rows="6" ></textarea>
+                <button type="button" id="buttonZoomTop" name="buttonZoomTop" onclick="changeSize('#sizeTop','add');" classe="btn btn-default btn-lg">+</button>
+                <button type="button" id="buttonDezoomTop" name="buttonDezoomTop" onclick="changeSize('#sizeTop','supp');" classe="btn btn-default btn-lg">-</button>
+                <input id="sizeTop" type="hidden" name="sizeTop" value="30">
+                <input type="color" id="clrTop" name="clrTop" value="" class="colorPick">
+                <hr>
+                <textarea id="textBot" name="textBot" placeholder="Bottom text" class="form-control" rows="6" ></textarea>
+                <button type="button" id="buttonZoomBot" name="buttonZoomBot" onclick="changeSize('#sizeBot','add');" classe="btn btn-default btn-lg">+</button>
+                <button type="button" id="buttonDezoomBot" name="buttonDezoomBot" onclick="changeSize('#sizeBot','supp');" classe="btn btn-default btn-lg">-</button>
+                <input id='sizeBot' type="hidden" name="sizeBot" value="30">
+                <input type="color" id="clrBot" name="clrBot" value="" class="colorPick">
+                <hr>
+                <input type="hidden" id="idImg" name="idImg" value="{{ID}}">
+                <button type="submit" name="generate" class="btn btn-success btn-lg">Generate</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+
+            function geneImgAjax(){
+                var textTop = $('#textTop').val();
+                var textBot = $('#textBot').val();
+  
+                var sizeTop = $('#sizeTop').val();
+                var sizeBot = $('#sizeBot').val();
+
+                var clrTop = $('#clrTop').val();
+                var clrBot = $('#clrBot').val();
+
+                var idImg = $('#idImg').val();
+
+               $.get('{{URL_SITE}}ajaxRefreshImage/',{
+						fonctionAppel:1,
+						sizeTop:sizeTop,
+						sizeBot:sizeBot,
+						clrTop:clrTop,
+						clrBot:clrBot,
+						textTop:textTop,
+						textBot:textBot,
+						idImg:idImg,
+					})
+					.done(function(data) {
+						$("#content-image").empty();
+						$("#content-image").html('<img id="image" src="data:image/jpeg;base64,'+data+'" alt="" class="img-responsive">');    	
+						/*$('#image').attr('src', 'data:image/jpeg;base64,'+data+'');*/
+					})
+					.fail(function(data) {
+						alert('Error: ' + data);
+					});
+            }
+
+
+            $( "#textTop, #textBot" ).on('keyup', function(e) {
+                geneImgAjax();     
+            });
+
+            $('#clrBot, #clrTop').change("change", function(){   
+                geneImgAjax();
+            });
+
+            $( "#buttonZoomBot, #buttonDezoomBot, #clrBot, #clrTop, #buttonDezoomTop, #buttonZoomTop" ).on('click', function(e) {
+                geneImgAjax();     
+            });
+
+        });
+		
+		function changeSize(champ,type){
+			if (type=="add"){
+				$(champ).val(parseInt($(champ).val())+1);
+			}else{
+				$(champ).val(parseInt($(champ).val())-1);
+			}
+		}
+
+		function testChampRemplis(){
+			if ($("#textBot").val()!="" || $("#textTop").val()!=""){
+				return true;
+			}else{
+				return false;
+			}
+		}
+    </script>
+	{{/SHOW}}
+	{{^SHOW}}
+		<p>Vous n'avez sélectionné aucune image</p>
+	{{/SHOW}}
+</div>

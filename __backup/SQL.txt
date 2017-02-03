@@ -1,0 +1,10 @@
+//Afficher toute les images.
+SELECT * FROM `memeImage`;
+
+//Afficher une image.
+SELECT * FROM `memeImage` WHERE `ID`={{ID}};
+
+// requete pour ajouter un meme genere.
+INSERT INTO `memeGenerate` (`ID`, `url`, `textTop`, `textBot`, `clrTop`, `clrBot`, `sizeTop`, `sizeBot`, `ID_memeImage`) VALUES (NULL, '{{url}}', '{{textTop}}', '{{textBot}}', '{{clrTop}}', '{{clrBot}}', '{{sizeTop}}', '{{sizeBot}}', '{{ID_memeImage}}');
+
+
